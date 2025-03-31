@@ -1,0 +1,38 @@
+{
+  "name": "router-divovk",
+  "version": "1.0.0",
+  "description": "Router DIVOVK for VK Mini Apps",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodwin74/router-divovk.git"
+  },
+  "keywords": [
+    "router",
+    "divovk",
+    "vkma",
+    "miniapps"
+  ],
+  "author": "Polyakov S.A.",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/goodwin74/router-divovk/issues"
+  },
+  "homepage": "https://github.com/goodwin74/router-divovk#readme",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "path": "^0.12.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "terser": "^5.39.0",
+    "vite": "^6.2.4"
+  }
+}
