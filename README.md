@@ -1,5 +1,8 @@
 # Роутинг для VK Mini Apps
 
+## Установка
+`npm i router-divovk`
+
 ## Базовые компоненты
 **DIVOVKProvider** - Обёртка для модальных окон.
 
