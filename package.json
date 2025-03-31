@@ -1,6 +1,6 @@
 {
   "name": "router-divovk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Router DIVOVK for VK Mini Apps",
   "main": "/dist/router-divovk.es.js",
   "scripts": {
