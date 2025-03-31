@@ -23,7 +23,7 @@
 ## Базовый пример
 Импорт
 ```jsx
-import {DIVOVKProvider, ActivityBlock, BtnToBlock} from './router-divovk';
+import {DIVOVKProvider, ActivityBlock, BtnToBlock} from 'router-divovk';
 ```
 Структура
 ```jsx
