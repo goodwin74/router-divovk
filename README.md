@@ -4,12 +4,14 @@
 **DIVOVKProvider** - Обёртка для модальных окон.
 
 **ActivityBlock** - Модальное окно
+
 **Пропсы**
 * `id` - ID модального окна
 * `activityStyle` - Стили фона
 * `activityContStyle` - Стили окна
 
 **BtnToBlock** - Кнопка для открытия окна
+
 **Пропсы**
 * `id` - ID кнопка
 * `className` - Классы кнопки
