@@ -1,3 +1,15 @@
+(function() {
+  "use strict";
+  try {
+    if (typeof document != "undefined") {
+      var elementStyle = document.createElement("style");
+      elementStyle.appendChild(document.createTextNode("._activity_1syf0_1 {\r\n    position: absolute;\r\n    top:0;\r\n    left:0;\r\n    transform: translate(0%,110%);\r\n    width: 100%;\r\n    height: 100%;\r\n    backface-visibility: hidden;\r\n    display: none;\r\n}\r\n._activity_1syf0_1 ._activityCont_1syf0_21 {\r\n    position: absolute;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    -webkit-flex-flow: column nowrap;\r\n    flex-flow: column nowrap;\r\n    background: #fff;\r\n    color: #000;\r\n    left:0;top:0;\r\n    width: 100%;\r\n    height: 100%;\r\n    transform: translate(110%,0%);\r\n    transition: transform .4s;\r\n    backface-visibility: hidden;\r\n}"));
+      document.head.appendChild(elementStyle);
+    }
+  } catch (e) {
+    console.error("vite-plugin-css-injected-by-js", e);
+  }
+})();
 (function(e3) {
             return "key" !== e3;
           });
