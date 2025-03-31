@@ -1,2 +1,2 @@
-# route-divovk
+# router-divovk
 Роутинг для VK Mini Apps
