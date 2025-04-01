@@ -28,21 +28,22 @@ import {DIVOVKProvider, ActivityBlock, BtnToBlock} from 'router-divovk';
 Структура
 ```jsx
 <DIVOVKProvider>
-<BtnToBlock toId={'block1'}>Создать заявку</BtnToBlock>
-<BtnToBlock toId={'block2'}>Посмотреть заявки</BtnToBlock>
-<BtnToBlock toId={'block3'}>Список сотрудников</BtnToBlock>
-<ActivityBlock id={'block1'}>
-<h1>Создание заявки</h1>
-<button onClick={()=>{history.back()}}>Назад</button>
-</ActivityBlock>
-<ActivityBlock id={'block2'}>
-<h1>Список заявок</h1>
-<button onClick={()=>{history.back()}}>Назад</button>
-</ActivityBlock>
-<ActivityBlock id={'block3'}>
-<h1>Список сотрудников</h1>
-<button onClick={()=>{history.back()}}>Назад</button>
-</ActivityBlock>
+  <BtnToBlock toId={'block1'}>Создать заявку</BtnToBlock>
+  <BtnToBlock toId={'block2'}>Посмотреть заявки</BtnToBlock>
+  <BtnToBlock toId={'block3'}>Список сотрудников</BtnToBlock>
+
+  <ActivityBlock id={'block1'}>
+    <h1>Создание заявки</h1>
+    <button onClick={()=>{history.back()}}>Назад</button>
+  </ActivityBlock>
+  <ActivityBlock id={'block2'}>
+    <h1>Список заявок</h1>
+    <button onClick={()=>{history.back()}}>Назад</button>
+  </ActivityBlock>
+  <ActivityBlock id={'block3'}>
+    <h1>Список сотрудников</h1>
+    <button onClick={()=>{history.back()}}>Назад</button>
+  </ActivityBlock>
 </DIVOVKProvider>
 ```
 
