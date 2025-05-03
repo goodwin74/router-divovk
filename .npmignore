@@ -1,0 +1,5 @@
+#ignore tools for dev npm
+/node_modules
+/vite.config.js
+/.idea
+/src
