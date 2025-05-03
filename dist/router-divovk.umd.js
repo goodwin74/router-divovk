@@ -62,43 +62,56 @@
     return o.Fragment = t2, o.jsx = n2, o.jsxs = n2, o;
   }() : n.exports = s()), n.exports);
   const u = "_activity_1syf0_1", f = "_activityCont_1syf0_21", y = t.createContext();
-  e.ActivityBlock = ({ id: e2, children: t2, activityStyle: r2, activityContStyle: n2 }) => c.jsx(c.Fragment, { children: c.jsx("div", { id: e2, className: u, style: r2, children: c.jsx("div", { className: f, style: n2, children: t2 }) }) }), e.BtnToBlock = ({ id: e2, toId: r2, children: n2, style: o2, className: a2 }) => {
+  e.ActivityBlock = ({ id: e2, children: r2, activityStyle: n2, activityContStyle: o2, lazyLoad: a2 }) => {
+    const { loadActivity: l2 } = t.useContext(y), [i2, s2] = t.useState(false);
+    return t.useEffect(() => {
+      l2[e2] && false === i2 && s2(true);
+    }, [l2[e2]]), c.jsx(c.Fragment, { children: c.jsx("div", { id: e2, className: u, style: n2, children: c.jsx("div", { className: f, style: o2, children: a2 ? i2 && r2 : r2 }) }) });
+  }, e.BtnToBlock = ({ id: e2, toId: r2, children: n2, style: o2, className: a2 }) => {
     const { showBlock: l2 } = t.useContext(y);
     return c.jsx(c.Fragment, { children: c.jsx("button", { id: e2, style: o2, className: a2, onClick: () => l2(r2), children: n2 }) });
   }, e.DIVOVKContext = y, e.DIVOVKProvider = ({ children: e2 }) => {
-    const [r2, n2] = t.useState([]), o2 = t.useRef(r2);
-    let a2 = t.useCallback((e3) => document.querySelector(e3), []), l2 = { open: (e3) => {
-      a2(`#${e3}`).style.display = "block", setTimeout(() => {
-        a2(`#${e3}`).style.zIndex = o2.current.length + 1, a2(`#${e3}`).style.transform = "translate(0%,0%)", a2(`#${e3}`).children[0].style.transform = "translate(0%,0%)";
+    const [r2, n2] = t.useState([]), o2 = t.useRef(r2), [a2, l2] = t.useState({});
+    let i2 = t.useCallback((e3) => document.querySelector(e3), []), s2 = { open: (e3) => {
+      i2(`#${e3}`).style.display = "block", setTimeout(() => {
+        i2(`#${e3}`).style.zIndex = o2.current.length + 1, i2(`#${e3}`).style.transform = "translate(0%,0%)", i2(`#${e3}`).children[0].style.transform = "translate(0%,0%)";
       }, 100);
     }, close: (e3) => {
-      a2(`#${e3}`).children[0].style.transform = "", setTimeout(() => {
-        a2(`#${e3}`).style.transform = "", a2(`#${e3}`).style.zIndex = "-1", a2(`#${e3}`).style.display = "none";
+      i2(`#${e3}`).children[0].style.transform = "", setTimeout(() => {
+        i2(`#${e3}`).style.transform = "", i2(`#${e3}`).style.zIndex = "-1", i2(`#${e3}`).style.display = "none";
       }, 400);
     }, init: (e3, t2) => {
-      a2(`#${e3}`).style.display = "block", a2(`#${e3}`).style.zIndex = t2, a2(`#${e3}`).style.transform = "translate(0%,0%)", a2(`#${e3}`).children[0].style.transform = "translate(0%,0%)";
+      i2(`#${e3}`).style.display = "block", i2(`#${e3}`).style.zIndex = t2, i2(`#${e3}`).style.transform = "translate(0%,0%)", i2(`#${e3}`).children[0].style.transform = "translate(0%,0%)";
     } };
+    const u2 = (e3) => {
+      a2[e3] || l2((t2) => ({ ...t2, [e3]: true }));
+    };
     t.useEffect(() => {
       const e3 = (e4) => {
         e4 = e4 || false;
         const t3 = window.location.hash.slice(1).split("/").filter(Boolean);
-        t3.length > o2.current.length ? l2.open(t3[t3.length - 1]) : t3.length < o2.current.length && l2.close(o2.current[o2.current.length - 1]), true === e4 && o2.current.length > 0 && o2.current.forEach((e5, t4) => {
-          l2.init(e5, t4 + 2);
+        if (t3.length > o2.current.length) {
+          let e5 = t3[t3.length - 1];
+          s2.open(e5);
+        } else if (t3.length < o2.current.length) {
+          let e5 = o2.current[o2.current.length - 1];
+          s2.close(e5);
+        }
+        true === e4 && o2.current.length > 0 && o2.current.forEach((e5, t4) => {
+          u2(e5), s2.init(e5, t4 + 2);
         }), n2(t3), o2.current = t3;
       }, t2 = window.location.hash.slice(1);
       return o2.current = t2.split("/").filter(Boolean), e3(true), window.addEventListener("hashchange", e3), () => {
         window.removeEventListener("hashchange", e3);
       };
     }, []);
-    const i2 = { blockHistory: r2, showBlock: (e3) => {
+    const f2 = { blockHistory: r2, showBlock: (e3) => {
+      u2(e3);
       ((e4) => {
         const t2 = e4.join("/");
         window.location.hash = t2 || "";
       })([...o2.current, e3]);
-    }, getBlockStyle: (e3) => {
-      const t2 = r2.indexOf(e3);
-      return -1 === t2 ? {} : { zIndex: t2 + 1 };
-    } };
-    return c.jsx(y.Provider, { value: i2, children: e2 });
+    }, getBlockStyle: (e3) => -1 !== r2.indexOf(e3), loadActivity: a2 };
+    return c.jsx(y.Provider, { value: f2, children: e2 });
   }, Object.defineProperty(e, Symbol.toStringTag, { value: "Module" });
 });
