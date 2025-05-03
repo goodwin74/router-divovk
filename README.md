@@ -12,6 +12,7 @@
 * `id` - ID модального окна
 * `activityStyle` - Стили фона
 * `activityContStyle` - Стили окна
+* `lazyLoad` - Ленивая загрузка (true\false) 
 
 **BtnToBlock** - Кнопка для открытия окна
 
