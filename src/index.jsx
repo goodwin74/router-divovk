@@ -8,6 +8,7 @@ export const DIVOVKContext = createContext();
 export const DIVOVKProvider = ({ children }) => {
     const [blockHistory, setBlockHistory] = useState([]);
     const previousBlockHistoryRef = useRef(blockHistory); // Ссылка на предыдущее значение
+    const [loadActivity, setLoadActivity] = useState({});
 
     let qS = useCallback((selector) => {
         return document.querySelector(selector);
@@ -45,18 +46,23 @@ export const DIVOVKProvider = ({ children }) => {
     };
 
     const showBlock = (id) => {
+        cacheBlock(id);
         const newHistory = [...previousBlockHistoryRef.current, id];
         updateHash(newHistory);
     };
 
+    const cacheBlock = (id) => {
+        if (!loadActivity[id]) { // Если блок еще не был загружен
+            setLoadActivity(prevState => ({
+                ...prevState,
+                [id]: true,
+            }));
+        }
+    }
+
     const getBlockStyle = (id) => {
         const index = blockHistory.indexOf(id);
-        if (index === -1) {
-            return {};
-        }
-        return {
-            zIndex: index + 1,
-        };
+        return index !== -1;
     };
 
     // Реакция на изменения в URL
@@ -68,12 +74,15 @@ export const DIVOVKProvider = ({ children }) => {
 
             // Определяем, что произошло: открытие или закрытие
             if (historyFromHash.length > previousBlockHistoryRef.current.length) {
-                animList['default'].open(historyFromHash[historyFromHash.length-1]);
+                let id = historyFromHash[historyFromHash.length-1];
+                animList['default'].open(id);
             } else if (historyFromHash.length < previousBlockHistoryRef.current.length) {
-                animList['default'].close(previousBlockHistoryRef.current[previousBlockHistoryRef.current.length-1]);
+                let id = previousBlockHistoryRef.current[previousBlockHistoryRef.current.length-1];
+                animList['default'].close(id);
             }
             if(init===true && previousBlockHistoryRef.current.length > 0){
                 previousBlockHistoryRef.current.forEach((id,i)=>{
+                    cacheBlock(id);
                     animList['default'].init(id,i+2);
                 });
 
@@ -103,6 +112,7 @@ export const DIVOVKProvider = ({ children }) => {
         blockHistory,
         showBlock,
         getBlockStyle,
+        loadActivity,
     };
 
     return (
@@ -112,13 +122,20 @@ export const DIVOVKProvider = ({ children }) => {
     );
 };
 
-export const ActivityBlock = ({id, children, activityStyle, activityContStyle}) => {
+export const ActivityBlock = ({id,children, activityStyle, activityContStyle, lazyLoad}) => {
+    const {loadActivity} = useContext(DIVOVKContext);
+    const [isVisible, setIsVisible] = useState(false);
 
+    useEffect(() => {
+        if (loadActivity[id] && isVisible === false) {
+            setIsVisible(true);
+        }
+    }, [loadActivity[id]]);
     return (
         <>
             <div id={id} className={styles.activity} style={activityStyle}>
                 <div className={styles.activityCont} style={activityContStyle}>
-                    {children}
+                    {lazyLoad ? isVisible && children : children}
                 </div>
             </div>
         </>
