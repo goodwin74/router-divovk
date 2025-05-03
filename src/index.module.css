@@ -1,0 +1,25 @@
+.activity {
+    position: absolute;
+    top:0;
+    left:0;
+    transform: translate(0%,110%);
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: none;
+}
+.activity .activityCont {
+    position: absolute;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    background: #fff;
+    color: #000;
+    left:0;top:0;
+    width: 100%;
+    height: 100%;
+    transform: translate(110%,0%);
+    transition: transform .4s;
+    backface-visibility: hidden;
+}
